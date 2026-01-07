@@ -30,3 +30,13 @@ if you are creating a resource, it gives us o/p using this we can create other r
 
 
      command line >> tfvars >> env variables >> default values  >> user prompt  (this is the hierarchy)
+
+
+## Conditions
+
+![alt text](images/ec2.png)
+
+In the above image, lino-3 has a condition. And its concerned variable is mentioned in the variables.tf file as shown below
+If that condition is true it will take the t3.micro else it will take t3.small for creating an instance
+
+![alt text](images/variable.png)
