@@ -42,3 +42,21 @@ If that condition is true it will take the t3.micro else it will take t3.small f
 ![alt text](images/variable.png)
 
 Do terraform terraform plan and we can understand what is being picked
+
+
+## Loops
+
+    1. count based loops
+
+        if we just use count = 4 under any resource, then a resource with same name will be created four times
+        if we use this tag Name = var.instances[count.index], it will take the count from variables.tf file and creates the no of resorces depending on the names mentioned in the variables.tf
+    
+        tags = {   
+            Name = var.instances[count.index]
+                }
+
+        variable "instances" {
+            default = ["mongodb", "redis", "mysql", "rabbitmq"]
+            }
+
+    2. 
