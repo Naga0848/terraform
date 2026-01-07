@@ -59,4 +59,6 @@ Do terraform terraform plan and we can understand what is being picked
             default = ["mongodb", "redis", "mysql", "rabbitmq"]
             }
 
-    2. 
+        If we want to create a route53 record using the privateIP which gets created via ec2 resource, we should right the output.tf for the ec2 instance and use it
+
+        
