@@ -29,4 +29,4 @@ if you are creating a resource, it gives us o/p using this we can create other r
         if we comment the tfvars.tf and unset the env variables and no default vars are present and start creating a resource, then terraform will ask for the user input for a variable-name
 
 
-     command line >> tfvars >> env variables >> default values  >> user prompt  (this is the hirarchy)
+     command line >> tfvars >> env variables >> default values  >> user prompt  (this is the hierarchy)
