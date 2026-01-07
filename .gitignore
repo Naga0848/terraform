@@ -1,0 +1,2 @@
+.terraform/
+.terraform/ git rm -r --cached .terraform/ git add .gitignore git commit -m Ignore .terraform directory
