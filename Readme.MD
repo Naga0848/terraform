@@ -40,3 +40,5 @@ In the above image, lino-3 has a condition. And its concerned variable is mentio
 If that condition is true it will take the t3.micro else it will take t3.small for creating an instance
 
 ![alt text](images/variable.png)
+
+Do terraform terraform plan and we can understand what is being picked
