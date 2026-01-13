@@ -224,4 +224,11 @@ Do terraform terraform plan and we can understand what is being picked
 
     Variables and .tfvars Files: Define variables in your main configuration or modules to make the code dynamic. Use environment-specific .tfvars files (e.g., dev.tfvars, prod.tfvars) to supply different values (like instance sizes, names, or tags) at runtime.
 
+        terraform init -backend-config=dev/backend.tf
+        terraform plan -var-file=dev/dev.tfvars
+        terraform apply -var-file=dev/dev.tfvars -auto-approve
+        terraform destroy -var-file=dev/dev.tfvars -auto-approve
+        
+        terraform init -reconfigure -backend=config=prod/backend.tf
+
     Separate State Files: Each environment must have its own state file to avoid conflicts and ensure isolation. This is critical for preventing changes in one environment from accidentally affecting another. 
