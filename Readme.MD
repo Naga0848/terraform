@@ -212,7 +212,7 @@ Do terraform terraform plan and we can understand what is being picked
         tags = var.sg_tags
     }
 
-## provisioning muliple envs in terraform using the same code
+## Provisioning muliple envs in terraform using the same code
 
     To provision multiple environments using the same Terraform code, the recommended approaches involve a combination of modules, variables, and a clear project structure using either separate directories per environment or Terraform workspaces
 
@@ -223,5 +223,5 @@ Do terraform terraform plan and we can understand what is being picked
     Modules: Encapsulate your infrastructure resources (e.g., a VPC, an EC2 instance, a database) into reusable modules. The main configuration then calls these modules, passing different input variables for each environment.
 
     Variables and .tfvars Files: Define variables in your main configuration or modules to make the code dynamic. Use environment-specific .tfvars files (e.g., dev.tfvars, prod.tfvars) to supply different values (like instance sizes, names, or tags) at runtime.
-    
+
     Separate State Files: Each environment must have its own state file to avoid conflicts and ensure isolation. This is critical for preventing changes in one environment from accidentally affecting another. 
