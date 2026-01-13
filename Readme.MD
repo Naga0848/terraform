@@ -66,3 +66,145 @@ Do terraform terraform plan and we can understand what is being picked
 
     2. For loop
 
+
+## Dynamic Blocks
+
+    dynamic blocks
+    ================
+            dynamic ingress {
+                for_each = var.ingress_ports
+                content {
+                    from_port        = ingress.value["from_port"]
+                    to_port          = ingress.value["to_port"]
+                    protocol         = "-1"
+                    cidr_blocks      = var.cidr_blocks
+                    ipv6_cidr_blocks = ["::/0"]
+                }
+            }
+
+            we will variablise the entire block here
+
+## Data Sources
+            data sources
+            =================
+            variables --> inputs
+            outputs --> print the info after creating resources
+
+            it can query the info from provider
+
+## Locals
+            locals
+            =================
+            locals can have expressions, you can assign a name to it and use it wherever you require
+
+            locals are like variables holding values against keys, but you can refer variables inside locals, expressions, functions..
+
+            variables can be overridden, locals can't be overridden
+
+            
+## State File           
+
+    IaaC --> declarative way of creating infra, whatever you declare IaaC tool should create provided you follow right syntax
+
+    .tf files --> desired/declared infra --> expectation
+    what exists in AWS --> actual infra --> reality
+
+    state files --> terraform use this file to track what it created in provider
+
+
+    terraform plan
+    ==================
+    reads .tf files --> understand what user wants
+    read state file --> empty
+    query the provider --> already infra exists or not
+
+    it starts create
+
+    created infra
+
+    terraform plan
+    reads .tf files, state file --> matched
+
+    I deleted instance in console manually
+    reads .tf files, state file --> matched
+    checks provider to verify desired infra vs actual infra
+
+    when you change tf code (r53 records were deleted)
+    =======================
+    .tf files --> understands what user wants
+    state file --> not matched
+
+    actual infra --> user don't want r53 records. 
+
+    terraform uses state file to track what it is created in the provider, every time we run terraform commands terraform check whether desired infra is matching actual infra through state file...
+
+    keeping state file in local will not work in collobarative environment. terraform does not understand what were the resources created by others, so it may create duplicate resources or else errors
+
+## Provisioners
+
+
+    when you create the server using terraform, we can take some actions using provisioners
+    1. local-exec  
+    2. remote-exec
+
+   ![alt text](images/Provisioners.png) 
+    resource "aws_instance" "roboshop" {
+    ami           = var.ami_id # left and right side names no need to be same
+    instance_type = var.instance_type
+    vpc_security_group_ids = [ aws_security_group.allow_all.id ]
+    
+    tags = var.ec2_tags
+
+    provisioner "local-exec" {
+        command = "${self.private_ip} > inventory"
+        on_failure = continue #ignoring errors
+    }
+
+    provisioner "local-exec" {
+        command = "echo 'instance is destroyed'"
+        when = destroy
+    }
+
+    connection {
+        type     = "ssh"
+        user     = "ec2-user"
+        password = "DevOps321"
+        host     = self.public_ip
+    }
+
+    provisioner "remote-exec" {
+        inline = [
+        "sudo dnf install nginx -y",
+        "sudo systemctl start nginx",
+        ]
+    }
+
+    provisioner "remote-exec" {
+        when = destroy
+        inline = [
+        "sudo systemctl stop nginx"
+        ]
+    }
+    }
+
+    resource "aws_security_group" "allow_all" {
+        name        = var.sg_name
+        description = var.sg_description
+
+        ingress {
+            from_port        = var.from_port
+            to_port          = var.to_port
+            protocol         = "-1"
+            cidr_blocks      = var.cidr_blocks
+            ipv6_cidr_blocks = ["::/0"]
+        }
+        egress {
+            from_port        = var.from_port
+            to_port          = var.to_port
+            protocol         = "-1"
+            cidr_blocks      = ["0.0.0.0/0"]
+            ipv6_cidr_blocks = ["::/0"]
+        }
+
+        tags = var.sg_tags
+    }
