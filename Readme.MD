@@ -148,6 +148,9 @@ Do terraform terraform plan and we can understand what is being picked
     2. remote-exec
 
    ![alt text](images/Provisioners.png) 
+
+   From the below resource we can understand, when we can use local-exec and remote-exec 
+   
     resource "aws_instance" "roboshop" {
     ami           = var.ami_id # left and right side names no need to be same
     instance_type = var.instance_type
