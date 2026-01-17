@@ -246,12 +246,12 @@ Do terraform terraform plan and we can understand what is being picked
 ![alt text](images/modules.png)
 
 
-    naming conventions:-
+        naming conventions:-
 
-        * humans --> terraform-module or terraform_module
-        * use hyphens where names are seen by humans
+            * humans --> terraform-module or terraform_module
+            * use hyphens where names are seen by humans
 
-        * programs --> _ resource names, data source names, etc..
+            * programs --> _ resource names, data source names, etc..
 
     use of modules:- 
 
