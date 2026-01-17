@@ -253,7 +253,7 @@ Do terraform terraform plan and we can understand what is being picked
     * We can define what type of instances can be created using our module, if a used wants to create the other type of resource than which is mentioned in the module, terraform will through an error. 
 
     * Below is the exaple of a module
-    
+
         terraform-aws-instance (module)
 	        resources
 	        variables
@@ -276,6 +276,8 @@ Do terraform terraform plan and we can understand what is being picked
 	    module.roboshop.instance_id # you will get instance_id as output
                     }
 
+        -----------------------------------------------------------------------
+        
         naming conventions:-
 
             * humans --> terraform-module or terraform_module
