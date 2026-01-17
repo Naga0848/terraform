@@ -232,3 +232,28 @@ Do terraform terraform plan and we can understand what is being picked
         terraform init -reconfigure -backend=config=prod/backend.tf
 
     Separate State Files: Each environment must have its own state file to avoid conflicts and ensure isolation. This is critical for preventing changes in one environment from accidentally affecting another. 
+
+
+## Modules
+
+    * DRY --> variables, common functions, ansible roles, etc.
+    * Module --> is a common code
+    * Project --> pass variables which are mandatory
+
+    * Small projects --> DevOps engineers develop modules, and use those modules
+    * Big projects --> sep team called platform engineering, they develop modules. individual project devops engineers use  these modules
+
+![alt text](images/modules.png)
+    naming conventions:-
+
+        * humans --> terraform-module or terraform_module
+        * use hyphens where names are seen by humans
+
+        * programs --> _ resource names, data source names, etc..
+
+    use of modules:- 
+
+        1. centralised code. reuse
+        2. enforcing standards through modules
+        3. changes at one place can be cascaded to all
+        4. easy maintance and updates
