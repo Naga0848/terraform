@@ -246,6 +246,7 @@ Do terraform terraform plan and we can understand what is being picked
 ![alt text](images/modules.png)
 
     * A module will be developed by the infra team and other DevOps engineer can make use of it.
+    * One module can be used by the multple other projects as shown in the above image.
     * A module will just consists of the .tf files(variables.tf ; outputs.tf ; ec2.tf etc...) of the resources to be created
     * The variables created in the local(while creating infra) can have the desired naming convention, but the variables used in the modules should follow the terraform syntax
     * We can define what type of instances can be created using our module, if a used wants to create the other type of resource than which is mentioned in the module, terraform will through an error. 
