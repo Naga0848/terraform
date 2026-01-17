@@ -244,6 +244,8 @@ Do terraform terraform plan and we can understand what is being picked
     * Big projects --> sep team called platform engineering, they develop modules. individual project devops engineers use  these modules
 
 ![alt text](images/modules.png)
+
+
     naming conventions:-
 
         * humans --> terraform-module or terraform_module
