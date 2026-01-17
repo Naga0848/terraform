@@ -252,6 +252,30 @@ Do terraform terraform plan and we can understand what is being picked
     * A module developer has to provide tthe clear documentation about the module that they are providing to us.
     * We can define what type of instances can be created using our module, if a used wants to create the other type of resource than which is mentioned in the module, terraform will through an error. 
 
+    * Below is the exaple of a module
+    
+        terraform-aws-instance (module)
+	        resources
+	        variables
+	        outputs
+	        data sources
+	        functions
+	        locals
+	        readme.md
+	
+        roboshop-ec2
+
+        module "roboshop" {
+	    source = "../terraform-aws-instance"
+	    # mandatory variable values should be supplied
+	    var-name = value
+	    # you can also override default variables
+                    }
+
+        output "instance_id"{
+	    module.roboshop.instance_id # you will get instance_id as output
+                    }
+
         naming conventions:-
 
             * humans --> terraform-module or terraform_module
