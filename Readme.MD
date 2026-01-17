@@ -277,7 +277,7 @@ Do terraform terraform plan and we can understand what is being picked
                     }
 
         -----------------------------------------------------------------------
-        
+
         naming conventions:-
 
             * humans --> terraform-module or terraform_module
@@ -292,4 +292,59 @@ Do terraform terraform plan and we can understand what is being picked
             3. changes at one place can be cascaded to all
             4. easy maintance and updates
 
-    
+## VPC
+
+![alt text](images/vpc.png)
+
+            32 bits
+            4 octate --> 8
+            243.32.45.78
+
+            0.0.0.0
+            .
+            .
+            .
+            .
+            .
+            .
+            255.255.255.255
+            7		  2 1 0
+            =		  =	= =
+            0 0 0 0 0 0 0 1 --> 1*2^0 => 1
+
+            0 0 1 1 1 0 1 0 --> 0*2^0 + 1*2^1 + 1*2^3 + 1*2^4 + 1*2^5
+
+            1 1 1 1 1 1 1 1 --> 255
+
+            0-9 --> 10
+            0-1 --> 2
+
+            2^32 --> 1024*1024*1024*4
+
+    1 region should have atleast 2 AZ for HA
+
+    public-subnet-1a 	--> 10.0.1.0/24 --> 256
+    public-subnet-1b 	--> 10.0.2.0/24 --> 256
+    private-subnet-1a 	--> 10.0.11.0/24 --> 256
+    private-subnet-1b 	--> 10.0.12.0/24 --> 256
+    database-subnet-1a 	--> 10.0.21.0/24 --> 256
+    database-subnet-1b 	--> 10.0.22.0/24 --> 256
+
+
+    create VPC
+    create IGW
+    attach VPC to IGW
+
+    create 2 public subnets
+    create 2 private subnets
+    create 2 database subnets
+
+    create public route table
+    add internet as route through IGW
+    attach to public-1a and public-1b
+
+    create private route table
+    attach to private-1a and private-1b
+
+    create database route table
+    attach to database-1a and database-1b
