@@ -253,9 +253,9 @@ Do terraform terraform plan and we can understand what is being picked
 
             * programs --> _ resource names, data source names, etc..
 
-    use of modules:- 
+        use of modules:- 
 
-        1. centralised code. reuse
-        2. enforcing standards through modules
-        3. changes at one place can be cascaded to all
-        4. easy maintance and updates
+            1. centralised code. reuse
+            2. enforcing standards through modules
+            3. changes at one place can be cascaded to all
+            4. easy maintance and updates
